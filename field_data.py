@@ -16,7 +16,7 @@ import pdb
 import plotly.plotly as py
 from pandas import Series
 from scipy import stats
-import statsmodels.api as sm
+#import statsmodels.api as sm
 
 def loc_match(file1,file2):
     '''This function fulfills part 1 of the FBN problem. It iterates through each
@@ -112,6 +112,7 @@ def eda(file3):
         plt.close(fig)
         
     #5 Run Regression
+    '''
     variety_map = {df.keys()[0]:0,df.keys()[1]:1}
     X = np.ones((len(data['variety']),4))
     X[:,1] = data['seed_spacing']
@@ -127,6 +128,7 @@ def eda(file3):
     stderr = (np.sum(np.square(result.predict(X) - data['yield']))/len(data['yield']))**0.5
     print 'Model Standard Error', stderr
     print 'Yield Standard Deviation', np.std(data['yield'])
+    '''
     
     #6 Create maps for each variable
     for key in data.keys():

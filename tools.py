@@ -9,6 +9,8 @@ import numpy as np
 import os
 import pandas as pd
 import math
+import nass #https://pypi.python.org/pypi/nass
+#import python-twitter as pt #https://github.com/bear/python-twitter
 
 def ncr(n,r):
     if int(n) != n or int(r) != r:
@@ -28,6 +30,7 @@ def augmented_stats(data):
     '''This function returns the descriptive statistics for a pandas data frame.
     The statistics themselves are returned as a pandas data frame.
     '''
+    from scipy import stats
     data_stats = data.describe()
     dict_temp = {}
     for key in data_stats.keys():
@@ -50,4 +53,10 @@ def nasa_wx():
     
     return data
 
+def power_list(lst,remaining):
+    lst.append(lst[0]*lst[-1])
+    remaining -= 1
+    if remaining > 0:
+        lst, remaining = power_list(lst, remaining)
+    return lst,remaining
     
